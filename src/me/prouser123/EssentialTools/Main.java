@@ -83,19 +83,24 @@ public class Main extends JavaPlugin {
     	Admin.settings.serverinfo.name = getConfig().getString("adminGUI.items.serverinfo.name");
     	Admin.settings.serverinfo.lore = getConfig().getString("adminGUI.items.serverinfo.lore");
 
-    	// AdminGUI Gamemode switch
-    	Admin.settings.survival.position = getConfig().getInt("adminGUI.items.stop.position");
-    	Admin.settings.survival.name = getConfig().getString("adminGUI.items.stop.name");
-    	Admin.settings.survival.lore = getConfig().getString("adminGUI.items.stop.lore");
+    	// AdminGUI Survival Gamemode
+    	Admin.settings.survival.position = getConfig().getInt("adminGUI.items.survival.position");
+    	Admin.settings.survival.name = getConfig().getString("adminGUI.items.survival.name");
+    	Admin.settings.survival.lore = getConfig().getString("adminGUI.items.survival.lore");
+
+    	// AdminGUI Creative Gamemode
+    	Admin.settings.creative.position = getConfig().getInt("adminGUI.items.creative.position");
+    	Admin.settings.creative.name = getConfig().getString("adminGUI.items.creative.name");
+    	Admin.settings.creative.lore = getConfig().getString("adminGUI.items.creative.lore");
 
     	// AdminGUI Vanish
-    	Admin.settings.vanish.position = getConfig().getInt("adminGUI.items.stop.position");
-    	Admin.settings.vanish.name = getConfig().getString("adminGUI.items.stop.name");
-    	Admin.settings.vanish.lore = getConfig().getString("adminGUI.items.stop.lore");
+    	Admin.settings.vanish.position = getConfig().getInt("adminGUI.items.vanish.position");
+    	Admin.settings.vanish.name = getConfig().getString("adminGUI.items.vanish.name");
+    	Admin.settings.vanish.lore = getConfig().getString("adminGUI.items.vanish.lore");
 
     	// AdminGUI Worldedit
-    	Admin.settings.worldedit.position = getConfig().getInt("adminGUI.items.stop.position");
-    	Admin.settings.worldedit.name = getConfig().getString("adminGUI.items.stop.name");
-    	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.stop.lore");
+    	Admin.settings.worldedit.position = getConfig().getInt("adminGUI.items.worldedit.position");
+    	Admin.settings.worldedit.name = getConfig().getString("adminGUI.items.worldedit.name");
+    	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.worldedit.lore");
     }
 }
