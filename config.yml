@@ -1,0 +1,44 @@
+# EssentialTools Configuration File
+  
+# Sets the prefix to show before commands
+chatPrefix: EssentialTools
+  
+adminGUI:
+  enabled: true
+  items:
+    # Stop server
+    stop:
+      position: 0
+      name: Stop
+      lore: Stop the server.
+    # Restart server
+    restart:
+      position: 1
+      name: Restart
+      lore: Restart the server.
+    # Server info (gc)
+    serverinfo:
+      position: 1
+      name: Server Info
+      lore: Infomation about the server.
+    # Survival Gamemode
+    survival:
+      position: 1
+      name: Survival
+      lore: Change your gamemode to Survival.
+    # Creative Gamemode
+    creative:
+      position: 1
+      name: Creative
+      lore: Change your gamemode to Creative.
+    # Vanish
+    vanish:
+      position: 1
+      name: Vanish
+      lore: Toggle vanish.
+    # WorldEdit Wand
+    worldedit:
+      position: 1
+      name: WorldEdit Wand
+      lore: Get a WorldEdit wand.
+    

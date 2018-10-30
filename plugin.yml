@@ -1,0 +1,16 @@
+main: me.prouser123.EssentialTools
+name: EssentialTools
+version: DEV
+author: Prouser123
+description: A collection of tools.
+commands:
+  etools:
+    description: A test command
+    usage: /etools <arguments>
+    permission: etools.use
+    permission-message: No permissions!
+  admin:
+    description: Admin GUI
+    usage: /admin
+    permission: etools.gui.admin
+    permission-message: No permissions!
