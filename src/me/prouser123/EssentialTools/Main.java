@@ -3,28 +3,34 @@ package me.prouser123.EssentialTools;
 import java.io.File;
 
 import org.bukkit.craftbukkit.libs.jline.internal.Log;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.prouser123.EssentialTools.ConstructTabCompleter;
 import me.prouser123.EssentialTools.Commands;
-import me.prouser123.EssentialTools.ConfigItems;
 
 import me.prouser123.EssentialTools.gui.Admin;
+import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
 	
 	// Prefix to use in the log console only
-	public static String logPrefix = "[EssentialTools] ";
+	
+	// Chat Prefix
+	public static String prefix;
 	
 	// Version string to use in commands
-	public static String version = "alpha_dev";
+	public static String version = "alpha-2";
 	
 	@Override
     public void onEnable() {
 		// On Enable
+		prefix = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
 		setupConfig();
 		activateCommands();
 		getInventoryConfig();
+		PluginManager pm = this.getServer().getPluginManager();
+        pm.registerEvents(new Admin(), this);
     }
    
     @Override
@@ -42,14 +48,11 @@ public class Main extends JavaPlugin {
     	// Load file
     	File file = new File(getDataFolder(), "config.yml");
     	if (!file.exists()) {
-    	    getLogger().info(logPrefix + "config.yml not found, creating!");
+    	    getLogger().info(prefix + "config.yml not found, creating!");
     	    saveDefaultConfig();
     	} else if (file.exists()) {
-    	    getLogger().info(logPrefix + "config.yml found, loading!");
+    	    getLogger().info(prefix + "config.yml found, loading!");
     	}
-    	
-    	// Get config items
-    	ConfigItems.chatPrefix = getConfig().getString("chatPrefix");
     }
     
     // Function to activate and enable commands
@@ -61,7 +64,7 @@ public class Main extends JavaPlugin {
     	// Check if AdminGUI is enabled
     	if (getConfig().getString("adminGUI.enabled").equals("true")) {
     		getCommand("admin").setExecutor(new Commands());
-    		Log.info(logPrefix + "Enabled AdminGUI.");
+    		Log.info(prefix + "Enabled AdminGUI.");
     		Commands.enabled.adminGUI = true;
     	}
     }
@@ -102,5 +105,7 @@ public class Main extends JavaPlugin {
     	Admin.settings.worldedit.position = getConfig().getInt("adminGUI.items.worldedit.position");
     	Admin.settings.worldedit.name = getConfig().getString("adminGUI.items.worldedit.name");
     	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.worldedit.lore");
+    	
+    	Admin.setup();
     }
 }

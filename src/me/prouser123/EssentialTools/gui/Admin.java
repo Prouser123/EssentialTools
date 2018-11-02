@@ -4,13 +4,18 @@ import java.util.Arrays;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.libs.jline.internal.Log;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.prouser123.EssentialTools.Main;
 
-public class Admin {
+public class Admin implements Listener {
 	
 	public static Inventory inv = Bukkit.createInventory(null, 9, "Admin Tools");
 	
@@ -23,54 +28,68 @@ public class Admin {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.BARRIER;
+			public static String command = "stop";
 		}
 		
 		public static class restart {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.REDSTONE_TORCH_ON;
+			public static String command = "restart";
 		}
 		
 		public static class serverinfo {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.ENDER_PEARL;
+			public static String command = "gc";
 		}
 
 		public static class survival {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.STONE_SWORD;
+			public static String command = "gms";
 		}
 
 		public static class creative {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.DIAMOND_SWORD;
+			public static String command = "gmc";
 		}
 
 		public static class vanish {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.POTION;
+			public static String command = "v";
 		}
 
 		public static class worldedit {
 			public static int position;
 			public static String name;
 			public static String lore;
+			public static Material material = Material.WOOD_AXE;
+			public static String command = "/wand";
 		}
 	}
 	
-	static void setup() {
+	public static void setup() {
 		// Create an ItemStack
-		ItemStack itemStop = new ItemStack(Material.BARRIER);
-		ItemStack itemRestart = new ItemStack(Material.REDSTONE_TORCH_ON);
-		ItemStack itemServerinfo = new ItemStack(Material.ENDER_PEARL);
-		ItemStack itemSurvival = new ItemStack(Material.STONE_SWORD);
-		ItemStack itemCreative = new ItemStack(Material.DIAMOND_SWORD);
-		ItemStack itemVanish = new ItemStack(Material.POTION);
-		ItemStack itemWorldedit = new ItemStack(Material.WOOD_AXE);
+		ItemStack itemStop = new ItemStack(settings.stop.material);
+		ItemStack itemRestart = new ItemStack(settings.restart.material);
+		ItemStack itemServerinfo = new ItemStack(settings.serverinfo.material);
+		ItemStack itemSurvival = new ItemStack(settings.survival.material);
+		ItemStack itemCreative = new ItemStack(settings.creative.material);
+		ItemStack itemVanish = new ItemStack(settings.vanish.material);
+		ItemStack itemWorldedit = new ItemStack(settings.worldedit.material);
 		
 		// Get the item's meta
 		ItemMeta metaStop = itemStop.getItemMeta();
@@ -116,5 +135,60 @@ public class Admin {
 		inv.setItem(settings.creative.position, itemCreative);
 		inv.setItem(settings.vanish.position, itemVanish);
 		inv.setItem(settings.worldedit.position, itemWorldedit);
+		
+		return;
 	}
+	
+	@EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+    	Player player = (Player) event.getWhoClicked();
+    	ItemStack clicked = event.getCurrentItem();
+    	Inventory inventory = event.getInventory();
+    	Log.info(Main.prefix + "Inventory Clicked");
+    	if (inventory.getName().equals(inv.getName())) {
+    		// Stop command
+    		if (clicked.getType() == settings.stop.material) {
+    			event.setCancelled(true);
+    			player.closeInventory();
+    			player.performCommand(settings.stop.command);
+    		
+    		// Restart command
+    		} else if (clicked.getType() == settings.restart.material) {
+    			event.setCancelled(true);
+    			player.closeInventory();
+    			player.performCommand(settings.restart.command);
+    			
+    		// Serverinfo command
+    		} else if (clicked.getType() == settings.serverinfo.material) {
+    			event.setCancelled(true);
+    			player.closeInventory();
+    			player.performCommand(settings.serverinfo.command);
+    		
+    		// Survival command
+    		} else if (clicked.getType() == settings.survival.material) {
+     			event.setCancelled(true);
+     			player.closeInventory();
+     			player.performCommand(settings.survival.command);
+     		
+     		// Creative command
+    		} else if (clicked.getType() == settings.creative.material) {
+      			event.setCancelled(true);
+      			player.closeInventory();
+      			player.performCommand(settings.creative.command);
+      		
+      		// Vanish command
+    		} else if (clicked.getType() == settings.vanish.material) {
+      			event.setCancelled(true);
+      			player.closeInventory();
+      			player.performCommand(settings.vanish.command);
+      		
+      		// Worldedit command
+    		} else if (clicked.getType() == settings.worldedit.material) {
+       			event.setCancelled(true);
+       			player.closeInventory();
+       			player.performCommand(settings.worldedit.command);
+       		}
+     		
+    	}
+    }
 }

@@ -1,6 +1,6 @@
-main: me.prouser123.EssentialTools
+main: me.prouser123.EssentialTools.Main
 name: EssentialTools
-version: DEV
+version: alpha-2
 author: Prouser123
 description: A collection of tools.
 commands:
