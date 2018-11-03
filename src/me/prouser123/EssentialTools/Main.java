@@ -20,11 +20,15 @@ public class Main extends JavaPlugin {
 	public static String prefix;
 	
 	// Version string to use in commands
-	public static String version = "alpha-2";
-	
+	public static String version;
+
+	// On Enable
 	@Override
     public void onEnable() {
-		// On Enable
+		// Get version
+		version = getDescription().getVersion();
+		
+		// Set prefix
 		prefix = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
 		setupConfig();
 		activateCommands();
