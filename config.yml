@@ -47,6 +47,11 @@ adminGUI:
 publicGUI:
   enabled: true
   items:
+    # Auction House
+    auctionhouse:
+      position: 0
+      name: Auction House
+      lore: Open the Auction House.
     # Spawn
     spawn:
       position: 3
@@ -62,3 +67,8 @@ publicGUI:
       position: 5
       name: Wild
       lore: Teleport to a random location.
+    # Ender Chest
+    echest:
+      position: 8
+      name: Ender Chest
+      lore: Open a portable Ender Chest.

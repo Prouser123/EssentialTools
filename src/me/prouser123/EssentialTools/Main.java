@@ -145,7 +145,12 @@ public class Main extends JavaPlugin {
         }
     	
     	void publicGUI() {
-    		
+
+        	// Public GUI - Auction House
+        	Public.settings.auctionhouse.position = getConfig().getInt("publicGUI.items.auctionhouse.position");
+        	Public.settings.auctionhouse.name = getConfig().getString("publicGUI.items.auctionhouse.name");
+        	Public.settings.auctionhouse.lore = getConfig().getString("publicGUI.items.auctionhouse.lore");
+        	
         	// Public GUI - Spawn
         	Public.settings.spawn.position = getConfig().getInt("publicGUI.items.spawn.position");
         	Public.settings.spawn.name = getConfig().getString("publicGUI.items.spawn.name");
@@ -160,6 +165,11 @@ public class Main extends JavaPlugin {
         	Public.settings.wild.position = getConfig().getInt("publicGUI.items.wild.position");
         	Public.settings.wild.name = getConfig().getString("publicGUI.items.wild.name");
         	Public.settings.wild.lore = getConfig().getString("publicGUI.items.wild.lore");
+
+        	// Public GUI - Ender Chest
+        	Public.settings.echest.position = getConfig().getInt("publicGUI.items.echest.position");
+        	Public.settings.echest.name = getConfig().getString("publicGUI.items.echest.name");
+        	Public.settings.echest.lore = getConfig().getString("publicGUI.items.echest.lore");
     	}
     }
     
