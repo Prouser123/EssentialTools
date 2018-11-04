@@ -18,27 +18,27 @@ adminGUI:
       lore: Restart the server.
     # Server info (gc)
     serverinfo:
-      position: 1
+      position: 2
       name: Server Info
       lore: Infomation about the server.
     # Survival Gamemode
     survival:
-      position: 1
+      position: 4
       name: Survival
       lore: Change your gamemode to Survival.
     # Creative Gamemode
     creative:
-      position: 1
+      position: 5
       name: Creative
       lore: Change your gamemode to Creative.
     # Vanish
     vanish:
-      position: 1
+      position: 7
       name: Vanish
       lore: Toggle vanish.
     # WorldEdit Wand
     worldedit:
-      position: 1
+      position: 8
       name: WorldEdit Wand
       lore: Get a WorldEdit wand.
     

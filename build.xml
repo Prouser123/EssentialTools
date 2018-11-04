@@ -2,7 +2,7 @@
 <project name="EssentialTools" default="makejar" basedir=".">
     <target name="makejar" description="Create a jar for the project">
         <mkdir dir="target"></mkdir>
-        <jar destfile="target/${ant.project.name}-alpha-3.jar">
+        <jar destfile="target/${ant.project.name}-alpha-5.jar">
             <fileset dir="bin"></fileset>
             <fileset file="plugin.yml"></fileset>
         	<fileset file="config.yml"></fileset>

@@ -14,10 +14,12 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
 	
-	// Prefix to use in the log console only
-	
-	// Chat Prefix
-	public static String prefix;
+	// Prefixes
+	public static class prefix {
+		public static String log = "[EssentialTools] ";
+		public static String chat;
+		
+	}
 	
 	// Version string to use in commands
 	public static String version;
@@ -28,8 +30,8 @@ public class Main extends JavaPlugin {
 		// Get version
 		version = getDescription().getVersion();
 		
-		// Set prefix
-		prefix = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
+		// Set chat prefix
+		prefix.chat = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
 		setupConfig();
 		activateCommands();
 		getInventoryConfig();
@@ -52,10 +54,10 @@ public class Main extends JavaPlugin {
     	// Load file
     	File file = new File(getDataFolder(), "config.yml");
     	if (!file.exists()) {
-    	    getLogger().info(prefix + "config.yml not found, creating!");
+    	    Log.info(prefix.log + "config.yml not found, creating!");
     	    saveDefaultConfig();
     	} else if (file.exists()) {
-    	    getLogger().info(prefix + "config.yml found, loading!");
+    	    Log.info(prefix.log + "config.yml found, loading!");
     	}
     }
     
@@ -68,7 +70,7 @@ public class Main extends JavaPlugin {
     	// Check if AdminGUI is enabled
     	if (getConfig().getString("adminGUI.enabled").equals("true")) {
     		getCommand("admin").setExecutor(new Commands());
-    		Log.info(prefix + "Enabled AdminGUI.");
+    		Log.info(prefix.log + "Enabled AdminGUI.");
     		Commands.enabled.adminGUI = true;
     	}
     }

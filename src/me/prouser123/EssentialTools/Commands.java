@@ -22,7 +22,7 @@ public class Commands implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (cmd.getName().equalsIgnoreCase("etools")) {
     		if (args.length == 0) {
-    			sender.sendMessage(Main.prefix + "You are running EssentialTools " + Main.version);
+    			sender.sendMessage(Main.prefix.chat + "You are running EssentialTools " + Main.version);
         		return true;
     		}
     		else if (args.length == 1) {
@@ -39,7 +39,7 @@ public class Commands implements CommandExecutor {
     				
     				//statusMessage += " | ";
     				
-    				sender.sendMessage(Main.prefix + "Enabled CityServer Features: " + statusMessage);
+    				sender.sendMessage(Main.prefix.chat + "Enabled CityServer Features: " + statusMessage);
     			}
     		}
     	}
@@ -47,7 +47,7 @@ public class Commands implements CommandExecutor {
     	else if (cmd.getName().equalsIgnoreCase("admin")){
     		Player player = (Player) sender;
     		player.openInventory(Admin.inv);
-    		Log.info(Main.prefix + "Opened Admin Inventory for: " + player.getName().toString());
+    		Log.info(Main.prefix.log + "Opened Admin Inventory for: " + player.getName().toString());
     		return true;
     	}
 		return true;
