@@ -2,7 +2,8 @@
   
 # Sets the prefix to show before commands
 chatPrefix: EssentialTools
-  
+
+# Admin GUI / Inventory
 adminGUI:
   enabled: true
   items:
@@ -41,4 +42,23 @@ adminGUI:
       position: 8
       name: WorldEdit Wand
       lore: Get a WorldEdit wand.
-    
+
+# Public GUI / Inventory
+publicGUI:
+  enabled: true
+  items:
+    # Spawn
+    spawn:
+      position: 3
+      name: Spawn
+      lore: Teleport to the spawn.
+    # Faction home
+    fhome:
+      position: 4
+      name: Faction Home
+      lore: Teleport to your faction home.
+    # Wild
+    wild:
+      position: 5
+      name: Wild
+      lore: Teleport to a random location.

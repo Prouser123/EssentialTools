@@ -1,6 +1,6 @@
 main: me.prouser123.EssentialTools.Main
 name: EssentialTools
-version: alpha-5
+version: alpha-7
 author: Prouser123
 description: A collection of tools.
 commands:
@@ -13,4 +13,9 @@ commands:
     description: Admin GUI
     usage: /admin
     permission: etools.gui.admin
+    permission-message: No permissions!
+  menu:
+    description: Public GUI
+    usage: /menu
+    permission: etools.gui.public
     permission-message: No permissions!

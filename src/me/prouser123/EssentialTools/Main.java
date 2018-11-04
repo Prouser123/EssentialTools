@@ -6,10 +6,14 @@ import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// Import other plugin Scripts
 import me.prouser123.EssentialTools.ConstructTabCompleter;
 import me.prouser123.EssentialTools.Commands;
 
+// Import GUIs
 import me.prouser123.EssentialTools.gui.Admin;
+import me.prouser123.EssentialTools.gui.Public;
+
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -36,7 +40,9 @@ public class Main extends JavaPlugin {
 		activateCommands();
 		//getInventoryConfig();
 		PluginManager pm = this.getServer().getPluginManager();
+		// Register Listners for Inventory Click Events
         pm.registerEvents(new Admin(), this);
+        pm.registerEvents(new Public(), this);
     }
    
     @Override
@@ -81,6 +87,21 @@ public class Main extends JavaPlugin {
     		// Call inventory setup
     		Admin.setup();
     	}
+    	
+    	// Check if PublicGUI is enabled
+    	if (getConfig().getString("publicGUI.enabled").equals("true")) {
+    		
+    		// Set command executor
+    		getCommand("menu").setExecutor(new Commands());
+    		Log.info(prefix.log + "Enabled PublicGUI.");
+    		
+    		// Get / Set variables
+    		Commands.enabled.publicGUI = true;
+    		new getConfigCalls().publicGUI();
+    		
+    		// Call inventory setup
+    		Public.setup();
+    	}
     }
     
     class getConfigCalls {
@@ -122,6 +143,24 @@ public class Main extends JavaPlugin {
         	Admin.settings.worldedit.name = getConfig().getString("adminGUI.items.worldedit.name");
         	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.worldedit.lore");
         }
+    	
+    	void publicGUI() {
+    		
+        	// Public GUI - Spawn
+        	Public.settings.spawn.position = getConfig().getInt("publicGUI.items.spawn.position");
+        	Public.settings.spawn.name = getConfig().getString("publicGUI.items.spawn.name");
+        	Public.settings.spawn.lore = getConfig().getString("publicGUI.items.spawn.lore");
+
+        	// Public GUI - Faction Home
+        	Public.settings.fhome.position = getConfig().getInt("publicGUI.items.fhome.position");
+        	Public.settings.fhome.name = getConfig().getString("publicGUI.items.fhome.name");
+        	Public.settings.fhome.lore = getConfig().getString("publicGUI.items.fhome.lore");
+
+        	// Public GUI - Wild
+        	Public.settings.wild.position = getConfig().getInt("publicGUI.items.wild.position");
+        	Public.settings.wild.name = getConfig().getString("publicGUI.items.wild.name");
+        	Public.settings.wild.lore = getConfig().getString("publicGUI.items.wild.lore");
+    	}
     }
     
 }
