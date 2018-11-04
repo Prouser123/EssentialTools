@@ -46,7 +46,7 @@ public class Commands implements CommandExecutor {
     					statusMessage += (ChatColor.RED + "Public GUI");
     				}
     				
-    				sender.sendMessage(Main.prefix.chat + "Enabled CityServer Features: " + statusMessage);
+    				sender.sendMessage(Main.prefix.chat + "Enabled Features: " + statusMessage);
     			}
     		}
     	}

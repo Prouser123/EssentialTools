@@ -144,7 +144,7 @@ public class Admin implements Listener {
     	Player player = (Player) event.getWhoClicked();
     	ItemStack clicked = event.getCurrentItem();
     	Inventory inventory = event.getInventory();
-    	Log.info(Main.prefix.log + "Inventory Click Event | Admin | " + player.getName());
+    	// Log.info(Main.prefix.log + "Inventory Click Event | Admin | " + player.getName());
     	if (inventory.getName().equals(inv.getName())) {
     		// Stop command
     		if (clicked.getType() == settings.stop.material) {

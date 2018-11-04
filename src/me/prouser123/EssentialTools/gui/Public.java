@@ -117,7 +117,7 @@ public class Public implements Listener {
     	Player player = (Player) event.getWhoClicked();
     	ItemStack clicked = event.getCurrentItem();
     	Inventory inventory = event.getInventory();
-    	Log.info(Main.prefix.log + "Inventory Click Event | Public | " + player.getName());
+    	// Log.info(Main.prefix.log + "Inventory Click Event | Public | " + player.getName());
     	if (inventory.getName().equals(inv.getName())) {
     		// Auction House command
     		if (clicked.getType() == settings.auctionhouse.material) {
