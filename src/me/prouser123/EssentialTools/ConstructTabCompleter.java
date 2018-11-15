@@ -12,7 +12,7 @@ public class ConstructTabCompleter implements TabCompleter {
 	@Override
 	public List <String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("etools") && args.length >= 1){
-			List<String> list = Arrays.asList("status");
+			List<String> list = Arrays.asList("status", "reload");
 			return list;
 		}
 		// TODO Auto-generated method stub

@@ -32,32 +32,15 @@ public class Commands implements CommandExecutor {
     		}
     		else if (args.length == 1) {
     			if (args[0].equalsIgnoreCase("status")) {
-    				
-    				String statusMessage = "";
-    				
-    				if (enabled.adminGUI) {
-    					statusMessage += (ChatColor.GREEN + "Admin GUI");
-    				} else {
-    					statusMessage += (ChatColor.RED + "Admin GUI");
-    				}
-    				
-    				statusMessage += ChatColor.WHITE + " | ";
-    				
-    				if (enabled.publicGUI) {
-    					statusMessage += (ChatColor.GREEN + "Public GUI");
-    				} else {
-    					statusMessage += (ChatColor.RED + "Public GUI");
-    				}
-    				
-    				statusMessage += ChatColor.WHITE + " | ";
-    				
-    				if (enabled.nightVision) {
-    					statusMessage += (ChatColor.GREEN + "Night Vision");
-    				} else {
-    					statusMessage += (ChatColor.RED + "Night Vision");
-    				}
-    				
-    				sender.sendMessage(Main.prefix.chat + "Enabled Features: " + statusMessage);
+    				// Run from function so that it can be called from reload
+    				featureStatus(sender);
+    			}
+    			else if (args[0].equalsIgnoreCase("reload")) {
+    				sender.sendMessage(Main.prefix.chat + "Reloading configuration and features...");
+    				Main.inst().setupConfig();
+    				Main.inst().activateCommands();
+    				sender.sendMessage(Main.prefix.chat + "Complete! Running status...");
+    				featureStatus(sender);
     			}
     		}
     	}
@@ -97,4 +80,33 @@ public class Commands implements CommandExecutor {
     	}
 		return true;
     }
+	
+	// /etools status - in a function so that it can be called from /etools reload
+	public void featureStatus(CommandSender sender) {
+		String statusMessage = "";
+		
+		if (enabled.adminGUI) {
+			statusMessage += (ChatColor.GREEN + "Admin GUI");
+		} else {
+			statusMessage += (ChatColor.RED + "Admin GUI");
+		}
+		
+		statusMessage += ChatColor.WHITE + " | ";
+		
+		if (enabled.publicGUI) {
+			statusMessage += (ChatColor.GREEN + "Public GUI");
+		} else {
+			statusMessage += (ChatColor.RED + "Public GUI");
+		}
+		
+		statusMessage += ChatColor.WHITE + " | ";
+		
+		if (enabled.nightVision) {
+			statusMessage += (ChatColor.GREEN + "Night Vision");
+		} else {
+			statusMessage += (ChatColor.RED + "Night Vision");
+		}
+		
+		sender.sendMessage(Main.prefix.chat + "Enabled Features: " + statusMessage);
+	}
 }

@@ -18,6 +18,9 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
 	
+	// Instance
+	private static Main instance;
+	
 	// Prefixes
 	public static class prefix {
 		public static String log = "[EssentialTools] ";
@@ -31,6 +34,9 @@ public class Main extends JavaPlugin {
 	// On Enable
 	@Override
     public void onEnable() {
+		// Instance
+		instance = this;
+		
 		// Get version
 		version = getDescription().getVersion();
 		
@@ -50,21 +56,20 @@ public class Main extends JavaPlugin {
     	// On Disable
     }
     
+    // Instance
+    public static Main inst() {
+    	  return instance;
+    	}
+    
     // Function to setup and load the config.yml file
     public void setupConfig() {
     	// Get config
     	getConfig().options().copyDefaults(true);
     	saveDefaultConfig();
     	reloadConfig();
-    	
     	// Load file
     	File file = new File(getDataFolder(), "config.yml");
-    	if (!file.exists()) {
-    	    Log.info(prefix.log + "config.yml not found, creating!");
-    	    saveDefaultConfig();
-    	} else if (file.exists()) {
-    	    Log.info(prefix.log + "config.yml found, loading!");
-    	}
+    	Log.info(prefix.log + "Config file found.");
     }
     
     // Function to activate and enable commands
@@ -86,6 +91,9 @@ public class Main extends JavaPlugin {
     		
     		// Call inventory setup
     		Admin.setup();
+    	} else {
+    		Commands.enabled.adminGUI = false;
+    		getCommand("admin").setExecutor(null);
     	}
     	
     	// Check if PublicGUI is enabled
@@ -101,6 +109,9 @@ public class Main extends JavaPlugin {
     		
     		// Call inventory setup
     		Public.setup();
+    	} else {
+    		Commands.enabled.publicGUI = false;
+    		getCommand("menu").setExecutor(null);
     	}
     	
     	// Check if Night Vision is enabled
@@ -114,6 +125,9 @@ public class Main extends JavaPlugin {
     		
     		// Log to console
     		Log.info(prefix.log + "Enabled Night Vision.");
+    	} else {
+    		Commands.enabled.nightVision = false;
+    		getCommand("nv").setExecutor(null);
     	}
     }
     
