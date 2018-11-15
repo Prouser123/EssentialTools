@@ -3,6 +3,10 @@
 # Sets the prefix to show before commands
 chatPrefix: EssentialTools
 
+# Night Vision
+nightvision:
+  enabled: true
+
 # Admin GUI / Inventory
 adminGUI:
   enabled: true

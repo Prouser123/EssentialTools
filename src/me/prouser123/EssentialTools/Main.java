@@ -102,6 +102,19 @@ public class Main extends JavaPlugin {
     		// Call inventory setup
     		Public.setup();
     	}
+    	
+    	// Check if Night Vision is enabled
+    	if (getConfig().getString("nightvision.enabled").equals("true")) {
+    		
+    		// Set command executor
+    		getCommand("nv").setExecutor(new Commands());
+    		
+    		// Set variable for status page
+    		Commands.enabled.nightVision = true;
+    		
+    		// Log to console
+    		Log.info(prefix.log + "Enabled Night Vision.");
+    	}
     }
     
     class getConfigCalls {

@@ -1,21 +1,26 @@
 main: me.prouser123.EssentialTools.Main
 name: EssentialTools
-version: alpha-9
+version: alpha-10
 author: Prouser123
 description: A collection of tools.
 commands:
   etools:
     description: A test command
-    usage: /etools <arguments>
+    usage: /etools <arguments> | This command may be disabled.
     permission: etools.use
     permission-message: No permissions!
   admin:
     description: Admin GUI
-    usage: /admin
+    usage: /admin | This command may be disabled.
     permission: etools.gui.admin
     permission-message: No permissions!
   menu:
     description: Public GUI
-    usage: /menu
+    usage: /menu | This command may be disabled
     permission: etools.gui.public
+    permission-message: No permissions!
+  nv:
+    description: Enable or Disable Night Vision
+    usage: /nv | This command may be disabled.
+    permission: etools.nv
     permission-message: No permissions!
