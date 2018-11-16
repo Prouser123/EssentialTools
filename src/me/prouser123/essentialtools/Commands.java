@@ -1,4 +1,4 @@
-package me.prouser123.EssentialTools;
+package me.prouser123.essentialtools;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,13 +8,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import me.prouser123.essentialtools.Main;
+import me.prouser123.essentialtools.gui.Admin;
+import me.prouser123.essentialtools.gui.Public;
 import net.md_5.bungee.api.ChatColor;
-
-import me.prouser123.EssentialTools.Main;
-
-// Import GUIs
-import me.prouser123.EssentialTools.gui.Admin;
-import me.prouser123.EssentialTools.gui.Public;
 
 public class Commands implements CommandExecutor {
 	

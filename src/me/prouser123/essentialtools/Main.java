@@ -1,19 +1,13 @@
-package me.prouser123.EssentialTools;
-
-import java.io.File;
+package me.prouser123.essentialtools;
 
 import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-// Import other plugin Scripts
-import me.prouser123.EssentialTools.ConstructTabCompleter;
-import me.prouser123.EssentialTools.Commands;
-
-// Import GUIs
-import me.prouser123.EssentialTools.gui.Admin;
-import me.prouser123.EssentialTools.gui.Public;
-
+import me.prouser123.essentialtools.Commands;
+import me.prouser123.essentialtools.ConstructTabCompleter;
+import me.prouser123.essentialtools.gui.Admin;
+import me.prouser123.essentialtools.gui.Public;
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -21,15 +15,15 @@ public class Main extends JavaPlugin {
 	// Instance
 	private static Main instance;
 	
+	// Version string to use in commands
+	public static String version;
+	
 	// Prefixes
 	public static class prefix {
 		public static String log = "[EssentialTools] ";
 		public static String chat;
 		
 	}
-	
-	// Version string to use in commands
-	public static String version;
 
 	// On Enable
 	@Override
@@ -68,7 +62,7 @@ public class Main extends JavaPlugin {
     	saveDefaultConfig();
     	reloadConfig();
     	// Load file
-    	File file = new File(getDataFolder(), "config.yml");
+    	//File file = new File(getDataFolder(), "config.yml");
     	Log.info(prefix.log + "Config file found.");
     }
     
@@ -131,9 +125,9 @@ public class Main extends JavaPlugin {
     	}
     }
     
-    class getConfigCalls {
+    private class getConfigCalls {
     	
-    	void adminGUI() {
+    	private void adminGUI() {
         	
         	// AdminGUI Stop
         	Admin.settings.stop.position = getConfig().getInt("adminGUI.items.stop.position");
@@ -171,7 +165,7 @@ public class Main extends JavaPlugin {
         	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.worldedit.lore");
         }
     	
-    	void publicGUI() {
+    	private void publicGUI() {
 
         	// Public GUI - Auction House
         	Public.settings.auctionhouse.position = getConfig().getInt("publicGUI.items.auctionhouse.position");

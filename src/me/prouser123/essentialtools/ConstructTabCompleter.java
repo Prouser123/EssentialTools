@@ -1,4 +1,4 @@
-package me.prouser123.EssentialTools;
+package me.prouser123.essentialtools;
 
 import java.util.Arrays;
 import java.util.List;
