@@ -24,7 +24,7 @@ public class Commands implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (cmd.getName().equalsIgnoreCase("etools")) {
     		if (args.length == 0) {
-    			EChat.chat(sender, "You are running EssentialTools " + Main.version);
+    			EChat.chat(sender, "You are running EssentialTools v" + Main.version);
         		return true;
     		}
     		else if (args.length == 1) {
