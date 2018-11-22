@@ -9,6 +9,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import me.prouser123.essentialtools.Main;
+import me.prouser123.essentialtools.Tools.EChat;
 import me.prouser123.essentialtools.gui.Admin;
 import me.prouser123.essentialtools.gui.Public;
 import net.md_5.bungee.api.ChatColor;
@@ -24,7 +25,7 @@ public class Commands implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     	if (cmd.getName().equalsIgnoreCase("etools")) {
     		if (args.length == 0) {
-    			sender.sendMessage(Main.prefix.chat + "You are running EssentialTools " + Main.version);
+    			EChat.chat(sender, "You are running EssentialTools " + Main.version);
         		return true;
     		}
     		else if (args.length == 1) {
@@ -33,10 +34,10 @@ public class Commands implements CommandExecutor {
     				featureStatus(sender);
     			}
     			else if (args[0].equalsIgnoreCase("reload")) {
-    				sender.sendMessage(Main.prefix.chat + "Reloading configuration and features...");
+    				EChat.chat(sender, "Reloading configuration and features...");
     				Main.inst().setupConfig();
     				Main.inst().activateCommands();
-    				sender.sendMessage(Main.prefix.chat + "Complete! Running status...");
+    				EChat.chat(sender, "Complete! Running status...");
     				featureStatus(sender);
     			}
     		}
@@ -45,21 +46,21 @@ public class Commands implements CommandExecutor {
     	else if (cmd.getName().equalsIgnoreCase("admin")){
     		Player player = (Player) sender;
     		player.openInventory(Admin.inv);
-    		Log.info(Main.prefix.log + "Opened Inventory | Admin | " + player.getName().toString());
+    		EChat.log("Opened Inventory | Admin | " + player.getName().toString());
     		return true;
     	}
     	
     	else if (cmd.getName().equalsIgnoreCase("menu")){
     		Player player = (Player) sender;
     		player.openInventory(Public.inv);
-    		Log.info(Main.prefix.log + "Opened Inventory | Public | " + player.getName().toString());
+    		EChat.log("Opened Inventory | Public | " + player.getName().toString());
     		return true;
     	}
     	
     	else if (cmd.getName().equalsIgnoreCase("nv")){
     		// Check if running in-game
     		if(!(sender instanceof Player)) {
-    			sender.sendMessage(Main.prefix.chat + "This command must be run in-game.");
+    			EChat.chat(sender, "This command must be run in-game.");
     		}
     		
     		Player player = (Player) sender;
@@ -67,11 +68,11 @@ public class Commands implements CommandExecutor {
     		// Disable Night Vision if player has the effect
     		if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
     			player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-    			player.sendMessage(Main.prefix.chat + "Night Vision Disabled");
+    			EChat.chat(sender, "Night Vision Disabled");
     		// Enable Night Vision as player does not have it
     		} else {
     			player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 100000, 2));
-    			player.sendMessage(Main.prefix.chat + "Night Vision Enabled");
+    			EChat.chat(sender, "Night Vision Enabled");
     		}
     		return true;
     	}
@@ -104,6 +105,6 @@ public class Commands implements CommandExecutor {
 			statusMessage += (ChatColor.RED + "Night Vision");
 		}
 		
-		sender.sendMessage(Main.prefix.chat + "Enabled Features: " + statusMessage);
+		EChat.chat(sender, "Enabled Features: " + statusMessage);
 	}
 }

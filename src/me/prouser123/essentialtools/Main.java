@@ -8,6 +8,10 @@ import me.prouser123.essentialtools.Commands;
 import me.prouser123.essentialtools.ConstructTabCompleter;
 import me.prouser123.essentialtools.gui.Admin;
 import me.prouser123.essentialtools.gui.Public;
+
+import me.prouser123.essentialtools.Tools;
+import me.prouser123.essentialtools.Tools.EChat;
+
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -63,7 +67,7 @@ public class Main extends JavaPlugin {
     	reloadConfig();
     	// Load file
     	//File file = new File(getDataFolder(), "config.yml");
-    	Log.info(prefix.log + "Config file found.");
+    	EChat.log("Config file found.");
     }
     
     // Function to activate and enable commands
@@ -77,7 +81,7 @@ public class Main extends JavaPlugin {
     		
     		// Set command executor
     		getCommand("admin").setExecutor(new Commands());
-    		Log.info(prefix.log + "Enabled AdminGUI.");
+    		EChat.log("Enabled AdminGUI.");
     		
     		// Get / Set variables
     		Commands.enabled.adminGUI = true;
@@ -95,7 +99,7 @@ public class Main extends JavaPlugin {
     		
     		// Set command executor
     		getCommand("menu").setExecutor(new Commands());
-    		Log.info(prefix.log + "Enabled PublicGUI.");
+    		EChat.log("Enabled PublicGUI.");
     		
     		// Get / Set variables
     		Commands.enabled.publicGUI = true;
@@ -118,7 +122,7 @@ public class Main extends JavaPlugin {
     		Commands.enabled.nightVision = true;
     		
     		// Log to console
-    		Log.info(prefix.log + "Enabled Night Vision.");
+    		EChat.log("Enabled Night Vision.");
     	} else {
     		Commands.enabled.nightVision = false;
     		getCommand("nv").setExecutor(null);
