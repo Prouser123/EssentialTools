@@ -12,6 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.prouser123.essentialtools.Tools;
+
 public class Admin implements Listener {
 	
 	public static Inventory inv = Bukkit.createInventory(null, 9, "Admin Tools");
@@ -79,60 +81,14 @@ public class Admin implements Listener {
 	}
 	
 	public static void setup() {
-		// Create an ItemStack
-		ItemStack itemStop = new ItemStack(settings.stop.material);
-		ItemStack itemRestart = new ItemStack(settings.restart.material);
-		ItemStack itemServerinfo = new ItemStack(settings.serverinfo.material);
-		ItemStack itemSurvival = new ItemStack(settings.survival.material);
-		ItemStack itemCreative = new ItemStack(settings.creative.material);
-		ItemStack itemVanish = new ItemStack(settings.vanish.material);
-		ItemStack itemWorldedit = new ItemStack(settings.worldedit.material);
-		
-		// Get the item's meta
-		ItemMeta metaStop = itemStop.getItemMeta();
-		ItemMeta metaRestart = itemRestart.getItemMeta();
-		ItemMeta metaServerinfo = itemServerinfo.getItemMeta();
-		ItemMeta metaSurvival = itemSurvival.getItemMeta();
-		ItemMeta metaCreative = itemCreative.getItemMeta();
-		ItemMeta metaVanish = itemVanish.getItemMeta();
-		ItemMeta metaWorldedit = itemWorldedit.getItemMeta();
-		
-		// Set display name
-		metaStop.setDisplayName(settings.stop.name);
-		metaRestart.setDisplayName(settings.restart.name);
-		metaServerinfo.setDisplayName(settings.serverinfo.name);
-		metaSurvival.setDisplayName(settings.survival.name);
-		metaCreative.setDisplayName(settings.creative.name);
-		metaVanish.setDisplayName(settings.vanish.name);
-		metaWorldedit.setDisplayName(settings.worldedit.name);
-		
-		// Set lore
-		metaStop.setLore(Arrays.asList(settings.stop.lore));
-		metaRestart.setLore(Arrays.asList(settings.restart.lore));
-		metaServerinfo.setLore(Arrays.asList(settings.serverinfo.lore));
-		metaSurvival.setLore(Arrays.asList(settings.survival.lore));
-		metaCreative.setLore(Arrays.asList(settings.creative.lore));
-		metaVanish.setLore(Arrays.asList(settings.vanish.lore));
-		metaWorldedit.setLore(Arrays.asList(settings.worldedit.lore));
-		
-		// Set the meta
-		itemStop.setItemMeta(metaStop);
-		itemRestart.setItemMeta(metaRestart);
-		itemServerinfo.setItemMeta(metaServerinfo);
-		itemSurvival.setItemMeta(metaSurvival);
-		itemCreative.setItemMeta(metaCreative);
-		itemVanish.setItemMeta(metaVanish);
-		itemWorldedit.setItemMeta(metaWorldedit);
-		
-		// Add the item to the inventory
-		inv.setItem(settings.stop.position, itemStop);
-		inv.setItem(settings.restart.position, itemRestart);
-		inv.setItem(settings.serverinfo.position, itemServerinfo);
-		inv.setItem(settings.survival.position, itemSurvival);
-		inv.setItem(settings.creative.position, itemCreative);
-		inv.setItem(settings.vanish.position, itemVanish);
-		inv.setItem(settings.worldedit.position, itemWorldedit);
-		
+		// Use Inventory Tools
+		Tools.Inventory.addItem(inv, settings.stop.material, settings.stop.name, settings.stop.lore, settings.stop.position);
+		Tools.Inventory.addItem(inv, settings.restart.material, settings.restart.name, settings.restart.lore, settings.restart.position);
+		Tools.Inventory.addItem(inv, settings.serverinfo.material, settings.serverinfo.name, settings.serverinfo.lore, settings.serverinfo.position);
+		Tools.Inventory.addItem(inv, settings.survival.material, settings.survival.name, settings.survival.lore, settings.survival.position);
+		Tools.Inventory.addItem(inv, settings.creative.material, settings.creative.name, settings.creative.lore, settings.creative.position);
+		Tools.Inventory.addItem(inv, settings.vanish.material, settings.vanish.name, settings.vanish.lore, settings.vanish.position);
+		Tools.Inventory.addItem(inv, settings.worldedit.material, settings.worldedit.name, settings.worldedit.lore, settings.worldedit.position);
 		return;
 	}
 	

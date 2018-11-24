@@ -12,6 +12,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.prouser123.essentialtools.Tools;
+
 public class Public implements Listener {
 	
 	public static Inventory inv = Bukkit.createInventory(null, 9, "Menu");
@@ -64,48 +66,12 @@ public class Public implements Listener {
 	}
 	
 	public static void setup() {
-		// Create an ItemStack
-		ItemStack itemAuctionhouse = new ItemStack(settings.auctionhouse.material);
-		ItemStack itemSpawn = new ItemStack(settings.spawn.material);
-		ItemStack itemFhome = new ItemStack(settings.fhome.material);
-		ItemStack itemWild = new ItemStack(settings.wild.material);
-		ItemStack itemEchest = new ItemStack(settings.echest.material);
-		
-		// Get the item's meta
-		ItemMeta metaAuctionhouse = itemAuctionhouse.getItemMeta();
-		ItemMeta metaSpawn = itemSpawn.getItemMeta();
-		ItemMeta metaFhome = itemFhome.getItemMeta();
-		ItemMeta metaWild = itemWild.getItemMeta();
-		ItemMeta metaEchest = itemEchest.getItemMeta();
-		
-		// Set display name
-		metaAuctionhouse.setDisplayName(settings.auctionhouse.name);
-		metaSpawn.setDisplayName(settings.spawn.name);
-		metaFhome.setDisplayName(settings.fhome.name);
-		metaWild.setDisplayName(settings.wild.name);
-		metaEchest.setDisplayName(settings.echest.name);
-		
-		// Set lore
-		metaAuctionhouse.setLore(Arrays.asList(settings.auctionhouse.lore));
-		metaSpawn.setLore(Arrays.asList(settings.spawn.lore));
-		metaFhome.setLore(Arrays.asList(settings.fhome.lore));
-		metaWild.setLore(Arrays.asList(settings.wild.lore));
-		metaEchest.setLore(Arrays.asList(settings.echest.lore));
-		
-		// Set the meta
-		itemAuctionhouse.setItemMeta(metaAuctionhouse);
-		itemSpawn.setItemMeta(metaSpawn);
-		itemFhome.setItemMeta(metaFhome);
-		itemWild.setItemMeta(metaWild);
-		itemEchest.setItemMeta(metaEchest);
-		
-		// Add the item to the inventory
-		inv.setItem(settings.auctionhouse.position, itemAuctionhouse);
-		inv.setItem(settings.spawn.position, itemSpawn);
-		inv.setItem(settings.fhome.position, itemFhome);
-		inv.setItem(settings.wild.position, itemWild);
-		inv.setItem(settings.echest.position, itemEchest);
-		
+		// Use Inventory Tools
+		Tools.Inventory.addItem(inv, settings.auctionhouse.material, settings.auctionhouse.name, settings.auctionhouse.lore, settings.auctionhouse.position);
+		Tools.Inventory.addItem(inv, settings.spawn.material, settings.spawn.name, settings.spawn.lore, settings.spawn.position);
+		Tools.Inventory.addItem(inv, settings.fhome.material, settings.fhome.name, settings.fhome.lore, settings.fhome.position);
+		Tools.Inventory.addItem(inv, settings.wild.material, settings.wild.name, settings.wild.lore, settings.wild.position);
+		Tools.Inventory.addItem(inv, settings.echest.material, settings.echest.name, settings.echest.lore, settings.echest.position);
 		return;
 	}
 	
