@@ -11,12 +11,12 @@ Work in progress.
 
 CraftBukkit is required for this project. You need to use BuildTools to compile it, as it cannot be distributed.
 
-1. Download BuildTools from [here](https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar).
+1.  Download BuildTools from [here](https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar).
 
-2. Then run it with this command:
+2.  Then run it with this command:
 
     `java -jar BuildTools.jar --rev 1.12`
 
-3. Then copy `craftbukkit-1.12.jar` into the `lib` folder.
+3.  Then copy `craftbukkit-1.12.jar` into the `lib` folder.
 
-4. Then run `maven clean` and `maven install` to build the project.
+4.  Then run `maven clean` and `maven install` to build the project.
