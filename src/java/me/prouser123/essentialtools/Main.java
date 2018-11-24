@@ -1,6 +1,5 @@
 package me.prouser123.essentialtools;
 
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -9,7 +8,6 @@ import me.prouser123.essentialtools.ConstructTabCompleter;
 import me.prouser123.essentialtools.gui.Admin;
 import me.prouser123.essentialtools.gui.Public;
 
-import me.prouser123.essentialtools.Tools;
 import me.prouser123.essentialtools.Tools.EChat;
 
 import net.md_5.bungee.api.ChatColor;

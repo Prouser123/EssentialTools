@@ -1,6 +1,6 @@
 main: me.prouser123.essentialtools.Main
 name: EssentialTools
-version: 1.0
+version: ${project.version}-maven
 author: Prouser123
 description: A collection of tools.
 commands:
