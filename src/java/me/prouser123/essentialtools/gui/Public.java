@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.prouser123.essentialtools.Tools;
+import me.prouser123.kodicore.Utils;
 
 public class Public implements Listener {
 	
@@ -63,12 +63,12 @@ public class Public implements Listener {
 	}
 	
 	public static void setup() {
-		// Use Inventory Tools
-		Tools.Inventory.addItem(inv, settings.auctionhouse.material, settings.auctionhouse.name, settings.auctionhouse.lore, settings.auctionhouse.position);
-		Tools.Inventory.addItem(inv, settings.spawn.material, settings.spawn.name, settings.spawn.lore, settings.spawn.position);
-		Tools.Inventory.addItem(inv, settings.fhome.material, settings.fhome.name, settings.fhome.lore, settings.fhome.position);
-		Tools.Inventory.addItem(inv, settings.wild.material, settings.wild.name, settings.wild.lore, settings.wild.position);
-		Tools.Inventory.addItem(inv, settings.echest.material, settings.echest.name, settings.echest.lore, settings.echest.position);
+		// Use Inventory Tools (KodiCore)
+		Utils.addInventoryItem(inv, settings.auctionhouse.material, settings.auctionhouse.name, settings.auctionhouse.lore, settings.auctionhouse.position);
+		Utils.addInventoryItem(inv, settings.spawn.material, settings.spawn.name, settings.spawn.lore, settings.spawn.position);
+		Utils.addInventoryItem(inv, settings.fhome.material, settings.fhome.name, settings.fhome.lore, settings.fhome.position);
+		Utils.addInventoryItem(inv, settings.wild.material, settings.wild.name, settings.wild.lore, settings.wild.position);
+		Utils.addInventoryItem(inv, settings.echest.material, settings.echest.name, settings.echest.lore, settings.echest.position);
 		return;
 	}
 	
