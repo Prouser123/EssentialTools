@@ -20,4 +20,4 @@ CraftBukkit is required for this project. You need to use BuildTools to compile 
 
 3.  Then copy `craftbukkit-1.12.jar` into the `lib` folder.
 
-4.  Then run `maven clean` and `maven install` to build the project.
+4.  Then run `mvn clean install` to build the project.
