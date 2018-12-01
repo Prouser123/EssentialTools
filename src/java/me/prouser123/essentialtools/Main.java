@@ -23,8 +23,9 @@ public class Main extends JavaPlugin {
 	// Instance
 	private static Main instance;
 	
-	// Version string to use in commands
+	// Version and Name string to use in commands
 	public static String version;
+	public static String name;
 	
 	// Prefixes
 	public static class prefix {
@@ -32,9 +33,6 @@ public class Main extends JavaPlugin {
 		public static String chat;
 		
 	}
-	
-	// Plugin Name for KodiCore getConfig
-	String pluginName = getDescription().getName();
 
 	// On Enable
 	@Override
@@ -42,8 +40,9 @@ public class Main extends JavaPlugin {
 		// Instance
 		instance = this;
 		
-		// Get version
+		// Get version & Name
 		version = getDescription().getVersion();
+		name = getDescription().getName();
 		
 		// Set chat prefix
 		prefix.chat = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
@@ -165,66 +164,66 @@ public class Main extends JavaPlugin {
     	
     	private void adminGUI() {
     		// AdminGUI Stop
-    		Admin.settings.stop.position = Utils.Config.getInt("adminGUI.items.stop.position", getConfig(), pluginName);
-    		Admin.settings.stop.name = Utils.Config.getString("adminGUI.items.stop.name", getConfig(), pluginName);
-    		Admin.settings.stop.lore = Utils.Config.getString("adminGUI.items.stop.lore", getConfig(), pluginName);
+    		Admin.settings.stop.position = Utils.Config.getInt("adminGUI.items.stop.position", getConfig(), name);
+    		Admin.settings.stop.name = Utils.Config.getString("adminGUI.items.stop.name", getConfig(), name);
+    		Admin.settings.stop.lore = Utils.Config.getString("adminGUI.items.stop.lore", getConfig(), name);
     		
     		// AdminGUI Restart
-    		Admin.settings.restart.position = Utils.Config.getInt("adminGUI.items.restart.position", getConfig(), pluginName);
-    		Admin.settings.restart.name = Utils.Config.getString("adminGUI.items.restart.name", getConfig(), pluginName);
-    		Admin.settings.restart.lore = Utils.Config.getString("adminGUI.items.restart.lore", getConfig(), pluginName);
+    		Admin.settings.restart.position = Utils.Config.getInt("adminGUI.items.restart.position", getConfig(), name);
+    		Admin.settings.restart.name = Utils.Config.getString("adminGUI.items.restart.name", getConfig(), name);
+    		Admin.settings.restart.lore = Utils.Config.getString("adminGUI.items.restart.lore", getConfig(), name);
 
     		// AdminGUI Serverinfo
-    		Admin.settings.serverinfo.position = Utils.Config.getInt("adminGUI.items.serverinfo.position", getConfig(), pluginName);
-    		Admin.settings.serverinfo.name = Utils.Config.getString("adminGUI.items.serverinfo.name", getConfig(), pluginName);
-    		Admin.settings.serverinfo.lore = Utils.Config.getString("adminGUI.items.serverinfo.lore", getConfig(), pluginName);
+    		Admin.settings.serverinfo.position = Utils.Config.getInt("adminGUI.items.serverinfo.position", getConfig(), name);
+    		Admin.settings.serverinfo.name = Utils.Config.getString("adminGUI.items.serverinfo.name", getConfig(), name);
+    		Admin.settings.serverinfo.lore = Utils.Config.getString("adminGUI.items.serverinfo.lore", getConfig(), name);
 
     		// AdminGUI Survival Gamemode
-    		Admin.settings.survival.position = Utils.Config.getInt("adminGUI.items.survival.position", getConfig(), pluginName);
-    		Admin.settings.survival.name = Utils.Config.getString("adminGUI.items.survival.name", getConfig(), pluginName);
-    		Admin.settings.survival.lore = Utils.Config.getString("adminGUI.items.survival.lore", getConfig(), pluginName);
+    		Admin.settings.survival.position = Utils.Config.getInt("adminGUI.items.survival.position", getConfig(), name);
+    		Admin.settings.survival.name = Utils.Config.getString("adminGUI.items.survival.name", getConfig(), name);
+    		Admin.settings.survival.lore = Utils.Config.getString("adminGUI.items.survival.lore", getConfig(), name);
     		
     		// AdminGUI Creative Gamemode
-    		Admin.settings.creative.position = Utils.Config.getInt("adminGUI.items.creative.position", getConfig(), pluginName);
-    		Admin.settings.creative.name = Utils.Config.getString("adminGUI.items.creative.name", getConfig(), pluginName);
-    		Admin.settings.creative.lore = Utils.Config.getString("adminGUI.items.creative.lore", getConfig(), pluginName);
+    		Admin.settings.creative.position = Utils.Config.getInt("adminGUI.items.creative.position", getConfig(), name);
+    		Admin.settings.creative.name = Utils.Config.getString("adminGUI.items.creative.name", getConfig(), name);
+    		Admin.settings.creative.lore = Utils.Config.getString("adminGUI.items.creative.lore", getConfig(), name);
 
     		// AdminGUI Vanish
-    		Admin.settings.vanish.position = Utils.Config.getInt("adminGUI.items.vanish.position", getConfig(), pluginName);
-    		Admin.settings.vanish.name = Utils.Config.getString("adminGUI.items.vanish.name", getConfig(), pluginName);
-    		Admin.settings.vanish.lore = Utils.Config.getString("adminGUI.items.vanish.lore", getConfig(), pluginName);
+    		Admin.settings.vanish.position = Utils.Config.getInt("adminGUI.items.vanish.position", getConfig(), name);
+    		Admin.settings.vanish.name = Utils.Config.getString("adminGUI.items.vanish.name", getConfig(), name);
+    		Admin.settings.vanish.lore = Utils.Config.getString("adminGUI.items.vanish.lore", getConfig(), name);
 
     		// AdminGUI Worldedit
-    		Admin.settings.worldedit.position = Utils.Config.getInt("adminGUI.items.worldedit.position", getConfig(), pluginName);
-    		Admin.settings.worldedit.name = Utils.Config.getString("adminGUI.items.worldedit.name", getConfig(), pluginName);
-    		Admin.settings.worldedit.lore = Utils.Config.getString("adminGUI.items.worldedit.lore", getConfig(), pluginName);
+    		Admin.settings.worldedit.position = Utils.Config.getInt("adminGUI.items.worldedit.position", getConfig(), name);
+    		Admin.settings.worldedit.name = Utils.Config.getString("adminGUI.items.worldedit.name", getConfig(), name);
+    		Admin.settings.worldedit.lore = Utils.Config.getString("adminGUI.items.worldedit.lore", getConfig(), name);
         }
     	
     	private void publicGUI() {
     		// Public GUI - Auction House
-    		Public.settings.auctionhouse.position = Utils.Config.getInt("publicGUI.items.auctionhouse.position", getConfig(), pluginName);
-    		Public.settings.auctionhouse.name = Utils.Config.getString("publicGUI.items.auctionhouse.name", getConfig(), pluginName);
-    		Public.settings.auctionhouse.lore = Utils.Config.getString("publicGUI.items.auctionhouse.lore", getConfig(), pluginName);
+    		Public.settings.auctionhouse.position = Utils.Config.getInt("publicGUI.items.auctionhouse.position", getConfig(), name);
+    		Public.settings.auctionhouse.name = Utils.Config.getString("publicGUI.items.auctionhouse.name", getConfig(), name);
+    		Public.settings.auctionhouse.lore = Utils.Config.getString("publicGUI.items.auctionhouse.lore", getConfig(), name);
         	
     		// Public GUI - Spawn
-    		Public.settings.spawn.position = Utils.Config.getInt("publicGUI.items.spawn.position", getConfig(), pluginName);
-    		Public.settings.spawn.name = Utils.Config.getString("publicGUI.items.spawn.name", getConfig(), pluginName);
-    		Public.settings.spawn.lore = Utils.Config.getString("publicGUI.items.spawn.lore", getConfig(), pluginName);
+    		Public.settings.spawn.position = Utils.Config.getInt("publicGUI.items.spawn.position", getConfig(), name);
+    		Public.settings.spawn.name = Utils.Config.getString("publicGUI.items.spawn.name", getConfig(), name);
+    		Public.settings.spawn.lore = Utils.Config.getString("publicGUI.items.spawn.lore", getConfig(), name);
 
     		// Public GUI - Faction Home
-    		Public.settings.fhome.position = Utils.Config.getInt("publicGUI.items.fhome.position", getConfig(), pluginName);
-    		Public.settings.fhome.name = Utils.Config.getString("publicGUI.items.fhome.name", getConfig(), pluginName);
-    		Public.settings.fhome.lore = Utils.Config.getString("publicGUI.items.fhome.lore", getConfig(), pluginName);
+    		Public.settings.fhome.position = Utils.Config.getInt("publicGUI.items.fhome.position", getConfig(), name);
+    		Public.settings.fhome.name = Utils.Config.getString("publicGUI.items.fhome.name", getConfig(), name);
+    		Public.settings.fhome.lore = Utils.Config.getString("publicGUI.items.fhome.lore", getConfig(), name);
 
     		// Public GUI - Wild
-    		Public.settings.wild.position = Utils.Config.getInt("publicGUI.items.wild.position", getConfig(), pluginName);
-    		Public.settings.wild.name = Utils.Config.getString("publicGUI.items.wild.name", getConfig(), pluginName);
-    		Public.settings.wild.lore = Utils.Config.getString("publicGUI.items.wild.lore", getConfig(), pluginName);
+    		Public.settings.wild.position = Utils.Config.getInt("publicGUI.items.wild.position", getConfig(), name);
+    		Public.settings.wild.name = Utils.Config.getString("publicGUI.items.wild.name", getConfig(), name);
+    		Public.settings.wild.lore = Utils.Config.getString("publicGUI.items.wild.lore", getConfig(), name);
 
     		// Public GUI - Ender Chest
-    		Public.settings.echest.position = Utils.Config.getInt("publicGUI.items.echest.position", getConfig(), pluginName);
-    		Public.settings.echest.name = Utils.Config.getString("publicGUI.items.echest.name", getConfig(), pluginName);
-    		Public.settings.echest.lore = Utils.Config.getString("publicGUI.items.echest.lore", getConfig(), pluginName);
+    		Public.settings.echest.position = Utils.Config.getInt("publicGUI.items.echest.position", getConfig(), name);
+    		Public.settings.echest.name = Utils.Config.getString("publicGUI.items.echest.name", getConfig(), name);
+    		Public.settings.echest.lore = Utils.Config.getString("publicGUI.items.echest.lore", getConfig(), name);
     	}
     }
     
