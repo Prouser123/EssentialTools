@@ -72,7 +72,7 @@
     <dependency>
       <groupId>me.prouser123</groupId>
       <artifactId>kodicore</artifactId>
-      <version>0.2.1-SNAPSHOT-DISCORD</version>
+      <version>0.2.1.1-SNAPSHOT-DISCORD</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
