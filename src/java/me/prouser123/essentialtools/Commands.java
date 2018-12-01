@@ -19,6 +19,7 @@ public class Commands implements CommandExecutor {
 		public static boolean adminGUI;
 		public static boolean publicGUI;
 		public static boolean nightVision;
+		public static boolean discord;
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -102,6 +103,14 @@ public class Commands implements CommandExecutor {
 			statusMessage += (ChatColor.GREEN + "Night Vision");
 		} else {
 			statusMessage += (ChatColor.RED + "Night Vision");
+		}
+
+		statusMessage += ChatColor.WHITE + " | ";
+		
+		if (enabled.discord) {
+			statusMessage += (ChatColor.GREEN + "Discord Bot");
+		} else {
+			statusMessage += (ChatColor.RED + "Discord Bot");
 		}
 		
 		EChat.chat(sender, "Enabled Features: " + statusMessage);

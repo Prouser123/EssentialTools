@@ -1,5 +1,6 @@
 package me.prouser123.essentialtools;
 
+import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,7 +13,9 @@ import me.prouser123.essentialtools.Tools.EChat;
 
 // Import KodiCore Utils
 import me.prouser123.kodicore.Utils;
-
+import me.prouser123.kodicore.discord.Discord;
+import me.prouser123.kodicore.discord.commands.CopyOwnerAvatar;
+import me.prouser123.kodicore.discord.commands.ServerInfo;
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -56,6 +59,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
     	// On Disable
+    	try {
+    		Discord.api.disconnect();
+    	} catch (Exception e) {
+    		Log.warn("Coudn't disconnect from the Discord API.");
+    	}
     }
     
     // Instance
@@ -130,6 +138,26 @@ public class Main extends JavaPlugin {
     	} else {
     		Commands.enabled.nightVision = false;
     		getCommand("nv").setExecutor(null);
+    	}
+    	
+    	// Check if Night Vision is enabled
+    	if (getConfig().getString("discord.enabled").equals("true")) {
+    		
+    		// Set variable for status page
+    		Commands.enabled.discord = true;
+    		
+    		// Setup Discord
+            new Discord(getConfig().getString("discord.token"));
+    		Discord.createListener.discordCommand("!ping", "pong", Discord.api);
+    		//Discord.api.addMessageCreateListener(new CopyOwnerAvatar("!getOwnerAvatar"));
+    		Discord.api.addMessageCreateListener(new ServerInfo());
+    		Discord.api.addMessageCreateListener(new CopyOwnerAvatar("!getOwnerAvatar"));
+    		Discord.createListener.discordToConsoleCommand("!gc", "gc", Discord.api);
+    		// Log to console
+    		
+    		EChat.log("Enabled the Discord Bot.");
+    	} else {
+    		Commands.enabled.discord = false;
     	}
     }
     
