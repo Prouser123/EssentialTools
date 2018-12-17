@@ -1,5 +1,6 @@
 package me.prouser123.essentialtools;
 
+import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,11 @@ import me.prouser123.essentialtools.gui.Public;
 
 import me.prouser123.essentialtools.Tools.EChat;
 
+// Import KodiCore Utils
+import me.prouser123.kodicore.Utils;
+import me.prouser123.kodicore.discord.Discord;
+import me.prouser123.kodicore.discord.commands.CopyOwnerAvatar;
+import me.prouser123.kodicore.discord.commands.ServerInfo;
 import net.md_5.bungee.api.ChatColor;
 
 public class Main extends JavaPlugin {
@@ -17,8 +23,9 @@ public class Main extends JavaPlugin {
 	// Instance
 	private static Main instance;
 	
-	// Version string to use in commands
+	// Version and Name string to use in commands
 	public static String version;
+	public static String name;
 	
 	// Prefixes
 	public static class prefix {
@@ -33,8 +40,9 @@ public class Main extends JavaPlugin {
 		// Instance
 		instance = this;
 		
-		// Get version
+		// Get version & Name
 		version = getDescription().getVersion();
+		name = getDescription().getName();
 		
 		// Set chat prefix
 		prefix.chat = ChatColor.WHITE + "[" + ChatColor.GOLD + getConfig().getString("chatPrefix") + ChatColor.WHITE + "] ";
@@ -50,6 +58,11 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
     	// On Disable
+    	try {
+    		Discord.api.disconnect();
+    	} catch (Exception e) {
+    		Log.warn("Coudn't disconnect from the Discord API.");
+    	}
     }
     
     // Instance
@@ -125,74 +138,92 @@ public class Main extends JavaPlugin {
     		Commands.enabled.nightVision = false;
     		getCommand("nv").setExecutor(null);
     	}
+    	
+    	// Check if Night Vision is enabled
+    	if (getConfig().getString("discord.enabled").equals("true")) {
+    		
+    		// Set variable for status page
+    		Commands.enabled.discord = true;
+    		
+    		// Setup Discord
+            new Discord(getConfig().getString("discord.token"));
+    		Discord.createListener.discordCommand("!ping", "pong", Discord.api);
+    		//Discord.api.addMessageCreateListener(new CopyOwnerAvatar("!getOwnerAvatar"));
+    		Discord.api.addMessageCreateListener(new ServerInfo());
+    		Discord.api.addMessageCreateListener(new CopyOwnerAvatar("!getOwnerAvatar"));
+    		Discord.createListener.discordToConsoleCommand("!gc", "gc", Discord.api);
+    		// Log to console
+    		
+    		EChat.log("Enabled the Discord Bot.");
+    	} else {
+    		Commands.enabled.discord = false;
+    	}
     }
     
     private class getConfigCalls {
     	
     	private void adminGUI() {
-        	
-        	// AdminGUI Stop
-        	Admin.settings.stop.position = getConfig().getInt("adminGUI.items.stop.position");
-        	Admin.settings.stop.name = getConfig().getString("adminGUI.items.stop.name");
-        	Admin.settings.stop.lore = getConfig().getString("adminGUI.items.stop.lore");
+    		// AdminGUI Stop
+    		Admin.settings.stop.position = Utils.Config.getInt("adminGUI.items.stop.position", getConfig(), name);
+    		Admin.settings.stop.name = Utils.Config.getString("adminGUI.items.stop.name", getConfig(), name);
+    		Admin.settings.stop.lore = Utils.Config.getString("adminGUI.items.stop.lore", getConfig(), name);
+    		
+    		// AdminGUI Restart
+    		Admin.settings.restart.position = Utils.Config.getInt("adminGUI.items.restart.position", getConfig(), name);
+    		Admin.settings.restart.name = Utils.Config.getString("adminGUI.items.restart.name", getConfig(), name);
+    		Admin.settings.restart.lore = Utils.Config.getString("adminGUI.items.restart.lore", getConfig(), name);
 
-        	// AdminGUI Restart
-        	Admin.settings.restart.position = getConfig().getInt("adminGUI.items.restart.position");
-        	Admin.settings.restart.name = getConfig().getString("adminGUI.items.restart.name");
-        	Admin.settings.restart.lore = getConfig().getString("adminGUI.items.restart.lore");
+    		// AdminGUI Serverinfo
+    		Admin.settings.serverinfo.position = Utils.Config.getInt("adminGUI.items.serverinfo.position", getConfig(), name);
+    		Admin.settings.serverinfo.name = Utils.Config.getString("adminGUI.items.serverinfo.name", getConfig(), name);
+    		Admin.settings.serverinfo.lore = Utils.Config.getString("adminGUI.items.serverinfo.lore", getConfig(), name);
 
-        	// AdminGUI Serverinfo
-        	Admin.settings.serverinfo.position = getConfig().getInt("adminGUI.items.serverinfo.position");
-        	Admin.settings.serverinfo.name = getConfig().getString("adminGUI.items.serverinfo.name");
-        	Admin.settings.serverinfo.lore = getConfig().getString("adminGUI.items.serverinfo.lore");
+    		// AdminGUI Survival Gamemode
+    		Admin.settings.survival.position = Utils.Config.getInt("adminGUI.items.survival.position", getConfig(), name);
+    		Admin.settings.survival.name = Utils.Config.getString("adminGUI.items.survival.name", getConfig(), name);
+    		Admin.settings.survival.lore = Utils.Config.getString("adminGUI.items.survival.lore", getConfig(), name);
+    		
+    		// AdminGUI Creative Gamemode
+    		Admin.settings.creative.position = Utils.Config.getInt("adminGUI.items.creative.position", getConfig(), name);
+    		Admin.settings.creative.name = Utils.Config.getString("adminGUI.items.creative.name", getConfig(), name);
+    		Admin.settings.creative.lore = Utils.Config.getString("adminGUI.items.creative.lore", getConfig(), name);
 
-        	// AdminGUI Survival Gamemode
-        	Admin.settings.survival.position = getConfig().getInt("adminGUI.items.survival.position");
-        	Admin.settings.survival.name = getConfig().getString("adminGUI.items.survival.name");
-        	Admin.settings.survival.lore = getConfig().getString("adminGUI.items.survival.lore");
+    		// AdminGUI Vanish
+    		Admin.settings.vanish.position = Utils.Config.getInt("adminGUI.items.vanish.position", getConfig(), name);
+    		Admin.settings.vanish.name = Utils.Config.getString("adminGUI.items.vanish.name", getConfig(), name);
+    		Admin.settings.vanish.lore = Utils.Config.getString("adminGUI.items.vanish.lore", getConfig(), name);
 
-        	// AdminGUI Creative Gamemode
-        	Admin.settings.creative.position = getConfig().getInt("adminGUI.items.creative.position");
-        	Admin.settings.creative.name = getConfig().getString("adminGUI.items.creative.name");
-        	Admin.settings.creative.lore = getConfig().getString("adminGUI.items.creative.lore");
-
-        	// AdminGUI Vanish
-        	Admin.settings.vanish.position = getConfig().getInt("adminGUI.items.vanish.position");
-        	Admin.settings.vanish.name = getConfig().getString("adminGUI.items.vanish.name");
-        	Admin.settings.vanish.lore = getConfig().getString("adminGUI.items.vanish.lore");
-
-        	// AdminGUI Worldedit
-        	Admin.settings.worldedit.position = getConfig().getInt("adminGUI.items.worldedit.position");
-        	Admin.settings.worldedit.name = getConfig().getString("adminGUI.items.worldedit.name");
-        	Admin.settings.worldedit.lore = getConfig().getString("adminGUI.items.worldedit.lore");
+    		// AdminGUI Worldedit
+    		Admin.settings.worldedit.position = Utils.Config.getInt("adminGUI.items.worldedit.position", getConfig(), name);
+    		Admin.settings.worldedit.name = Utils.Config.getString("adminGUI.items.worldedit.name", getConfig(), name);
+    		Admin.settings.worldedit.lore = Utils.Config.getString("adminGUI.items.worldedit.lore", getConfig(), name);
         }
     	
     	private void publicGUI() {
-
-        	// Public GUI - Auction House
-        	Public.settings.auctionhouse.position = getConfig().getInt("publicGUI.items.auctionhouse.position");
-        	Public.settings.auctionhouse.name = getConfig().getString("publicGUI.items.auctionhouse.name");
-        	Public.settings.auctionhouse.lore = getConfig().getString("publicGUI.items.auctionhouse.lore");
+    		// Public GUI - Auction House
+    		Public.settings.auctionhouse.position = Utils.Config.getInt("publicGUI.items.auctionhouse.position", getConfig(), name);
+    		Public.settings.auctionhouse.name = Utils.Config.getString("publicGUI.items.auctionhouse.name", getConfig(), name);
+    		Public.settings.auctionhouse.lore = Utils.Config.getString("publicGUI.items.auctionhouse.lore", getConfig(), name);
         	
-        	// Public GUI - Spawn
-        	Public.settings.spawn.position = getConfig().getInt("publicGUI.items.spawn.position");
-        	Public.settings.spawn.name = getConfig().getString("publicGUI.items.spawn.name");
-        	Public.settings.spawn.lore = getConfig().getString("publicGUI.items.spawn.lore");
+    		// Public GUI - Spawn
+    		Public.settings.spawn.position = Utils.Config.getInt("publicGUI.items.spawn.position", getConfig(), name);
+    		Public.settings.spawn.name = Utils.Config.getString("publicGUI.items.spawn.name", getConfig(), name);
+    		Public.settings.spawn.lore = Utils.Config.getString("publicGUI.items.spawn.lore", getConfig(), name);
 
-        	// Public GUI - Faction Home
-        	Public.settings.fhome.position = getConfig().getInt("publicGUI.items.fhome.position");
-        	Public.settings.fhome.name = getConfig().getString("publicGUI.items.fhome.name");
-        	Public.settings.fhome.lore = getConfig().getString("publicGUI.items.fhome.lore");
+    		// Public GUI - Faction Home
+    		Public.settings.fhome.position = Utils.Config.getInt("publicGUI.items.fhome.position", getConfig(), name);
+    		Public.settings.fhome.name = Utils.Config.getString("publicGUI.items.fhome.name", getConfig(), name);
+    		Public.settings.fhome.lore = Utils.Config.getString("publicGUI.items.fhome.lore", getConfig(), name);
 
-        	// Public GUI - Wild
-        	Public.settings.wild.position = getConfig().getInt("publicGUI.items.wild.position");
-        	Public.settings.wild.name = getConfig().getString("publicGUI.items.wild.name");
-        	Public.settings.wild.lore = getConfig().getString("publicGUI.items.wild.lore");
+    		// Public GUI - Wild
+    		Public.settings.wild.position = Utils.Config.getInt("publicGUI.items.wild.position", getConfig(), name);
+    		Public.settings.wild.name = Utils.Config.getString("publicGUI.items.wild.name", getConfig(), name);
+    		Public.settings.wild.lore = Utils.Config.getString("publicGUI.items.wild.lore", getConfig(), name);
 
-        	// Public GUI - Ender Chest
-        	Public.settings.echest.position = getConfig().getInt("publicGUI.items.echest.position");
-        	Public.settings.echest.name = getConfig().getString("publicGUI.items.echest.name");
-        	Public.settings.echest.lore = getConfig().getString("publicGUI.items.echest.lore");
+    		// Public GUI - Ender Chest
+    		Public.settings.echest.position = Utils.Config.getInt("publicGUI.items.echest.position", getConfig(), name);
+    		Public.settings.echest.name = Utils.Config.getString("publicGUI.items.echest.name", getConfig(), name);
+    		Public.settings.echest.lore = Utils.Config.getString("publicGUI.items.echest.lore", getConfig(), name);
     	}
     }
     

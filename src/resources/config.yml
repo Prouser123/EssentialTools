@@ -3,6 +3,11 @@
 # Sets the prefix to show before commands
 chatPrefix: EssentialTools
 
+# Discord bot
+discord:
+  enabled: false
+  token: 123.abc
+
 # Night Vision
 nightvision:
   enabled: true

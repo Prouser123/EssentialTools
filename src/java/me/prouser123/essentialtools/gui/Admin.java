@@ -9,7 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.prouser123.essentialtools.Tools;
+import me.prouser123.kodicore.Utils;
 
 public class Admin implements Listener {
 	
@@ -78,14 +78,14 @@ public class Admin implements Listener {
 	}
 	
 	public static void setup() {
-		// Use Inventory Tools
-		Tools.Inventory.addItem(inv, settings.stop.material, settings.stop.name, settings.stop.lore, settings.stop.position);
-		Tools.Inventory.addItem(inv, settings.restart.material, settings.restart.name, settings.restart.lore, settings.restart.position);
-		Tools.Inventory.addItem(inv, settings.serverinfo.material, settings.serverinfo.name, settings.serverinfo.lore, settings.serverinfo.position);
-		Tools.Inventory.addItem(inv, settings.survival.material, settings.survival.name, settings.survival.lore, settings.survival.position);
-		Tools.Inventory.addItem(inv, settings.creative.material, settings.creative.name, settings.creative.lore, settings.creative.position);
-		Tools.Inventory.addItem(inv, settings.vanish.material, settings.vanish.name, settings.vanish.lore, settings.vanish.position);
-		Tools.Inventory.addItem(inv, settings.worldedit.material, settings.worldedit.name, settings.worldedit.lore, settings.worldedit.position);
+		// Use Inventory Tools (KodiCore)
+		Utils.addInventoryItem(inv, settings.stop.material, settings.stop.name, settings.stop.lore, settings.stop.position);
+		Utils.addInventoryItem(inv, settings.restart.material, settings.restart.name, settings.restart.lore, settings.restart.position);
+		Utils.addInventoryItem(inv, settings.serverinfo.material, settings.serverinfo.name, settings.serverinfo.lore, settings.serverinfo.position);
+		Utils.addInventoryItem(inv, settings.survival.material, settings.survival.name, settings.survival.lore, settings.survival.position);
+		Utils.addInventoryItem(inv, settings.creative.material, settings.creative.name, settings.creative.lore, settings.creative.position);
+		Utils.addInventoryItem(inv, settings.vanish.material, settings.vanish.name, settings.vanish.lore, settings.vanish.position);
+		Utils.addInventoryItem(inv, settings.worldedit.material, settings.worldedit.name, settings.worldedit.lore, settings.worldedit.position);
 		return;
 	}
 	

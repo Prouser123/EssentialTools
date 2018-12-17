@@ -2,6 +2,7 @@ main: me.prouser123.essentialtools.Main
 name: EssentialTools
 version: ${project.version}-maven
 author: Prouser123
+depend: [KodiCore]
 description: A collection of tools.
 commands:
   etools:
