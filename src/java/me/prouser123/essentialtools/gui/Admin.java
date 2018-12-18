@@ -1,6 +1,7 @@
 package me.prouser123.essentialtools.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,7 +14,7 @@ import me.prouser123.kodicore.Utils;
 
 public class Admin implements Listener {
 	
-	public static Inventory inv = Bukkit.createInventory(null, 9, "Admin Tools");
+	//public static Inventory inv = Bukkit.createInventory(null, 9, "Admin Tools");
 	
 	
 	// Settings class from config
@@ -26,6 +27,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.BARRIER;
 			public static String command = "stop";
+			public static String permission = "minecraft.command.stop";
 		}
 		
 		public static class restart {
@@ -34,6 +36,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.REDSTONE_TORCH_ON;
 			public static String command = "restart";
+			public static String permission = "bukkit.command.reload";
 		}
 		
 		public static class serverinfo {
@@ -42,6 +45,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.ENDER_PEARL;
 			public static String command = "gc";
+			public static String permission = "essentials.gc";
 		}
 
 		public static class survival {
@@ -50,6 +54,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.STONE_SWORD;
 			public static String command = "gms";
+			public static String permission = "essentials.gamemode.survival";
 		}
 
 		public static class creative {
@@ -58,6 +63,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.DIAMOND_SWORD;
 			public static String command = "gmc";
+			public static String permission = "essentials.gamemode.creative";
 		}
 
 		public static class vanish {
@@ -66,6 +72,7 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.POTION;
 			public static String command = "v";
+			public static String permission = "essentials.vanish";
 		}
 
 		public static class worldedit {
@@ -74,10 +81,57 @@ public class Admin implements Listener {
 			public static String lore;
 			public static Material material = Material.WOOD_AXE;
 			public static String command = "/wand";
+			public static String permission = "worldedit.wand";
 		}
 	}
 	
-	public static void setup() {
+	public static void setupAndOpenForPlayer(Player player) {
+		
+		Inventory inv = Bukkit.createInventory(null, 9, "Admin Tools");
+		
+		setup(inv);
+		
+		// If player can't use the command, edit the item name and lore to match.
+		
+		// Stop
+		if (!player.hasPermission(settings.stop.permission)) {
+			Utils.addInventoryItem(inv, settings.stop.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.stop.name), "You don't have permission!", settings.stop.position);
+		}
+		
+		// Restart
+		if (!player.hasPermission(settings.restart.permission)) {
+			Utils.addInventoryItem(inv, settings.restart.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.restart.name), "You don't have permission!", settings.restart.position);
+		}
+		
+		// Serverinfo
+		if (!player.hasPermission(settings.serverinfo.permission)) {
+			Utils.addInventoryItem(inv, settings.serverinfo.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.serverinfo.name), "You don't have permission!", settings.serverinfo.position);
+		}
+		
+		// Survival
+		if (!player.hasPermission(settings.survival.permission)) {
+			Utils.addInventoryItem(inv, settings.survival.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.survival.name), "You don't have permission!", settings.survival.position);
+		}
+		
+		// Creative
+		if (!player.hasPermission(settings.creative.permission)) {
+			Utils.addInventoryItem(inv, settings.creative.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.creative.name), "You don't have permission!", settings.creative.position);
+		}
+		
+		// Vanish
+		if (!player.hasPermission(settings.vanish.permission)) {
+			Utils.addInventoryItem(inv, settings.vanish.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.vanish.name), "You don't have permission!", settings.vanish.position);
+		}
+		
+		// Worldedit
+		if (!player.hasPermission(settings.worldedit.permission)) {
+			Utils.addInventoryItem(inv, settings.worldedit.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.worldedit.name), "You don't have permission!", settings.worldedit.position);
+		}
+		
+		player.openInventory(inv);
+	}
+	
+	public static void setup(Inventory inv) {
 		// Use Inventory Tools (KodiCore)
 		Utils.addInventoryItem(inv, settings.stop.material, settings.stop.name, settings.stop.lore, settings.stop.position);
 		Utils.addInventoryItem(inv, settings.restart.material, settings.restart.name, settings.restart.lore, settings.restart.position);
@@ -95,7 +149,7 @@ public class Admin implements Listener {
     	ItemStack clicked = event.getCurrentItem();
     	Inventory inventory = event.getInventory();
     	// Log.info(Main.prefix.log + "Inventory Click Event | Admin | " + player.getName());
-    	if (inventory.getName().equals(inv.getName())) {
+    	if (inventory.getName().equals("Admin Tools")) {
     		// Stop command
     		if (clicked.getType() == settings.stop.material) {
     			event.setCancelled(true);

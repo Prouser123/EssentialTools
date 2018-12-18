@@ -99,7 +99,7 @@ public class Main extends JavaPlugin {
     		new getConfigCalls().adminGUI();
     		
     		// Call inventory setup
-    		Admin.setup();
+    		//Admin.setup();
     	} else {
     		Commands.enabled.adminGUI = false;
     		getCommand("admin").setExecutor(null);

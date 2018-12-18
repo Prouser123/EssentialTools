@@ -45,7 +45,8 @@ public class Commands implements CommandExecutor {
     	
     	else if (cmd.getName().equalsIgnoreCase("admin")){
     		Player player = (Player) sender;
-    		player.openInventory(Admin.inv);
+    		//player.openInventory(Admin.inv);
+    		Admin.setupAndOpenForPlayer(player);
     		EChat.log("Opened Inventory | Admin | " + player.getName().toString());
     		return true;
     	}
