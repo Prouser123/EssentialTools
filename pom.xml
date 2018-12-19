@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.prouser123.java</groupId>
   <artifactId>EssentialTools</artifactId>
-  <version>2.1.1-SNAPSHOT-b2</version>
+  <version>2.1.1-SNAPSHOT-b5</version>
   <build>
     <sourceDirectory>src/java</sourceDirectory>
     <resources>

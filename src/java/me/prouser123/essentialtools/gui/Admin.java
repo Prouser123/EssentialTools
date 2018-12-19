@@ -95,37 +95,37 @@ public class Admin implements Listener {
 		
 		// Stop
 		if (!player.hasPermission(settings.stop.permission)) {
-			Utils.addInventoryItem(inv, settings.stop.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.stop.name), "You don't have permission!", settings.stop.position);
+			Utils.addInventoryItem(inv, settings.stop.material, (ChatColor.RED + settings.stop.name), "You don't have permission!", settings.stop.position);
 		}
 		
 		// Restart
 		if (!player.hasPermission(settings.restart.permission)) {
-			Utils.addInventoryItem(inv, settings.restart.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.restart.name), "You don't have permission!", settings.restart.position);
+			Utils.addInventoryItem(inv, settings.restart.material, (ChatColor.RED + settings.restart.name), "You don't have permission!", settings.restart.position);
 		}
 		
 		// Serverinfo
 		if (!player.hasPermission(settings.serverinfo.permission)) {
-			Utils.addInventoryItem(inv, settings.serverinfo.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.serverinfo.name), "You don't have permission!", settings.serverinfo.position);
+			Utils.addInventoryItem(inv, settings.serverinfo.material, (ChatColor.RED + settings.serverinfo.name), "You don't have permission!", settings.serverinfo.position);
 		}
 		
 		// Survival
 		if (!player.hasPermission(settings.survival.permission)) {
-			Utils.addInventoryItem(inv, settings.survival.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.survival.name), "You don't have permission!", settings.survival.position);
+			Utils.addInventoryItem(inv, settings.survival.material, (ChatColor.RED + settings.survival.name), "You don't have permission!", settings.survival.position);
 		}
 		
 		// Creative
 		if (!player.hasPermission(settings.creative.permission)) {
-			Utils.addInventoryItem(inv, settings.creative.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.creative.name), "You don't have permission!", settings.creative.position);
+			Utils.addInventoryItem(inv, settings.creative.material, (ChatColor.RED + settings.creative.name), "You don't have permission!", settings.creative.position);
 		}
 		
 		// Vanish
 		if (!player.hasPermission(settings.vanish.permission)) {
-			Utils.addInventoryItem(inv, settings.vanish.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.vanish.name), "You don't have permission!", settings.vanish.position);
+			Utils.addInventoryItem(inv, settings.vanish.material, (ChatColor.RED + settings.vanish.name), "You don't have permission!", settings.vanish.position);
 		}
 		
 		// Worldedit
 		if (!player.hasPermission(settings.worldedit.permission)) {
-			Utils.addInventoryItem(inv, settings.worldedit.material, (ChatColor.STRIKETHROUGH.toString() + ChatColor.RED + settings.worldedit.name), "You don't have permission!", settings.worldedit.position);
+			Utils.addInventoryItem(inv, settings.worldedit.material, (ChatColor.RED + settings.worldedit.name), "You don't have permission!", settings.worldedit.position);
 		}
 		
 		player.openInventory(inv);
